@@ -1,0 +1,36 @@
+<ion-content class="login" padding>
+	<div class="content">
+		<div padding [@flyInBottomFast]="cloudState" class="form-container">
+			<form [formGroup]='formData' (ngSubmit)="login(formData.value)">
+				<div [@flyInBottomSlow]="logoState" class="app-logo"></div>
+				<div class="locales">
+					<locale-chooser *ngFor="let locale of locales" [code]="locale.code" [label]="locale.label" 
+                    [selected]="locale.selected" (localeChange)="localeChangeHandler($event)"></locale-chooser>
+				</div>
+				<div class="field-rows" inset [@bounceInBottom]="formState">
+					<div class="field-row" [class.has-error]="hasUsernameError">
+						<div class="field-error">{{usernameErrorKey | translate}}</div>
+						<div class="email">
+							<div class="username-container">
+								<input [disabled]="isProcessing" [(ngModel)]="username" name="username" 
+                                placeholder="{{'LoginPage.placeholders.username' | translate}}" type="text" />
+							</div>
+							<div class="domain">@vinci-energies.net</div>
+						</div>
+					</div>
+					<div class="field-row" [class.has-error]="hasPasswordError">
+						<div class="field-error">{{passwordErrorKey | translate}}</div>
+						<div class="password">
+							<input [disabled]="isProcessing" [(ngModel)]="password" name="password" 
+                            placeholder="{{'LoginPage.placeholders.password' | translate}}" type="password" />
+						</div>
+					</div>
+				</div>
+				<button [disabled]="isProcessing" class="login-button">
+                    <span [class.hide]="isProcessing">{{'LoginPage.labels.connect' | translate}}</span>
+                    <div [class.hide]="!isProcessing" class="spinner"></div>
+                </button>
+			</form>
+		</div>
+	</div>
+</ion-content>
