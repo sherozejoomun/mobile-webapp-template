@@ -3,15 +3,20 @@ import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/uac/login';
+import { LocaleChooser } from '../components/locale/locale-chooser';
+import { TranslateModule } from 'ng2-translate/ng2-translate';
+
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
-    HomePage
+    HomePage,
+    LocaleChooser
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    TranslateModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -21,4 +26,4 @@ import { LoginPage } from '../pages/uac/login';
   ],
   providers: []
 })
-export class AppModule {}
+export class AppModule { }
